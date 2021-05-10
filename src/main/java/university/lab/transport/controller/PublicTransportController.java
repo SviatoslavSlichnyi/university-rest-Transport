@@ -15,37 +15,28 @@ public class PublicTransportController {
 
      private final PublicTransportCrudService transportCrudService;
 
-     // TODO: GET
      @GetMapping("/get/{transportId}")
      public PublicTransportDto fetchTransportById(@PathVariable Long transportId) {
-//          return transportCrudService.fetchTransportDtoById(transportId);
-          return null;
+          return transportCrudService.fetchTransportDtoById(transportId);
      }
 
-     // TODO: GET_ALL
      @GetMapping("/get/all")
      public List<PublicTransportDto> fetchAllTransport() {
-//          return transportCrudService.fetchAllPublicTransportDtos();
-          return null;
+          return transportCrudService.fetchAllPublicTransportDtos();
      }
 
-     // TODO: POST
      @PostMapping("/save")
      public PublicTransportDto saveTransport(PublicTransportDto transportDto) {
-//          return transportCrudService.saveTransportByDto(transportDto);
-          return null;
+          return transportCrudService.saveTransportByDto(transportDto);
      }
 
-     // TODO: PUT
      @PutMapping("/update")
      public PublicTransportDto updateTransport(PublicTransportDto transportDto) {
-//          return transportCrudService.updateTransportByDto(transportDto);
-          return null;
+          return transportCrudService.updateTransportByDto(transportDto);
      }
 
-     // TODO: DELETE
      @DeleteMapping("/remove/{transportId}")
      public void removeTransport(@PathVariable Long transportId) {
-//          transportCrudService.removeById(transportId);
+          transportCrudService.removeById(transportId);
      }
 }
