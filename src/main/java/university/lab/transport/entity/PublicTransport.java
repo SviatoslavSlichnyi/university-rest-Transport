@@ -17,6 +17,7 @@ import java.util.Set;
 public class PublicTransport {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long publicTransportId;
 
     private String type;
