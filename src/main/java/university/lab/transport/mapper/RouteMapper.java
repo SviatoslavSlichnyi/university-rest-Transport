@@ -4,6 +4,7 @@ import lombok.Setter;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import university.lab.transport.config.SpringMapperConfig;
 import university.lab.transport.dto.RouteDto;
 import university.lab.transport.entity.PublicTransport;
@@ -38,12 +39,16 @@ public abstract class RouteMapper {
     public abstract Route map(RouteDto routeDto);
 
     protected List<Long> mapStations(List<Station> stations) {
+        if (CollectionUtils.isEmpty(stations)) return null;
+
         return stations.stream()
                 .map(Station::getStationId)
                 .collect(Collectors.toList());
     }
 
     protected List<Station> mapStationIds(List<Long> stationIds) {
+        if (CollectionUtils.isEmpty(stationIds)) return null;
+
         return stationIds.stream()
                 .map(stationRepository::getOne)
                 .collect(Collectors.toList());
