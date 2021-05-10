@@ -28,16 +28,6 @@ public class PublicTransportCrudServiceImpl implements PublicTransportCrudServic
         return saveOrUpdateTransportByDto(transportDto);
     }
 
-    private void validateSaveAction(PublicTransportDto transportDto) {
-        Long publicTransportId = transportDto.getPublicTransportId();
-        if (publicTransportId == null) return;
-
-        boolean exists = transportRepository.existsById(publicTransportId);
-        if (exists) {
-            throw new BusinessOperationRuntimeError("Transport already exists");
-        }
-    }
-
     @Override
     public List<PublicTransportDto> fetchAllPublicTransportDtos() {
         return transportRepository.findAll().stream()
@@ -67,6 +57,16 @@ public class PublicTransportCrudServiceImpl implements PublicTransportCrudServic
         PublicTransport transport = transportMapper.map(transportDto);
         PublicTransport savedTransport = transportRepository.save(transport);
         return transportMapper.map(savedTransport);
+    }
+
+    private void validateSaveAction(PublicTransportDto transportDto) {
+        Long publicTransportId = transportDto.getPublicTransportId();
+        if (publicTransportId == null) return;
+
+        boolean exists = transportRepository.existsById(publicTransportId);
+        if (exists) {
+            throw new BusinessOperationRuntimeError("Transport already exists");
+        }
     }
 
     private void validateUpdateAction(PublicTransportDto transportDto) {
