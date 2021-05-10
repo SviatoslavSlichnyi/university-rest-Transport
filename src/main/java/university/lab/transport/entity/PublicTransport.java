@@ -1,10 +1,9 @@
 package university.lab.transport.entity;
 
 import lombok.*;
+import university.lab.transport.entity.type.TransportType;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -20,7 +19,7 @@ public class PublicTransport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long publicTransportId;
 
-    private String type;
+    private TransportType type;
 
     private String brand;
 

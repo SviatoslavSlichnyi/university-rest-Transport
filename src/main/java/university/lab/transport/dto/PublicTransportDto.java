@@ -1,6 +1,7 @@
 package university.lab.transport.dto;
 
 import lombok.*;
+import university.lab.transport.entity.type.TransportType;
 
 import java.util.Set;
 
@@ -13,7 +14,7 @@ public class PublicTransportDto {
 
     private Long publicTransportId;
 
-    private String type;
+    private TransportType type;
 
     private String brand;
 
