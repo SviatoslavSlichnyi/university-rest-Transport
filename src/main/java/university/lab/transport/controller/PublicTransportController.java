@@ -26,12 +26,12 @@ public class PublicTransportController {
      }
 
      @PostMapping("/save")
-     public PublicTransportDto saveTransport(PublicTransportDto transportDto) {
+     public PublicTransportDto saveTransport(@RequestBody PublicTransportDto transportDto) {
           return transportCrudService.saveTransportByDto(transportDto);
      }
 
      @PutMapping("/update")
-     public PublicTransportDto updateTransport(PublicTransportDto transportDto) {
+     public PublicTransportDto updateTransport(@RequestBody PublicTransportDto transportDto) {
           return transportCrudService.updateTransportByDto(transportDto);
      }
 

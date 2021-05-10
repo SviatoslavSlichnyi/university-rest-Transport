@@ -26,12 +26,12 @@ public class RouteController {
     }
 
     @PostMapping("/save")
-    public RouteDto saveRoute(RouteDto routeDto) {
+    public RouteDto saveRoute(@RequestBody RouteDto routeDto) {
         return routeCrudService.saveRoteByDto(routeDto);
     }
 
     @PutMapping("/update")
-    public RouteDto updateRoute(RouteDto routeDto) {
+    public RouteDto updateRoute(@RequestBody RouteDto routeDto) {
         return routeCrudService.updateRouteByDto(routeDto);
     }
 

@@ -26,12 +26,12 @@ public class StationController {
     }
 
     @PostMapping("/save")
-    public StationDto saveStationByDto(StationDto stationDto) {
+    public StationDto saveStationByDto(@RequestBody StationDto stationDto) {
         return stationCrudService.saveStationByDto(stationDto);
     }
 
     @PutMapping("/update")
-    public StationDto updateStationByDto(StationDto stationDto) {
+    public StationDto updateStationByDto(@RequestBody StationDto stationDto) {
         return stationCrudService.updateStationByDto(stationDto);
     }
 
