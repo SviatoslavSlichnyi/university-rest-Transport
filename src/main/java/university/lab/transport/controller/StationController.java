@@ -15,37 +15,28 @@ public class StationController {
 
     private final StationCrudService stationCrudService;
 
-    // TODO: GET
     @GetMapping("/get/{stationId}")
     public StationDto getStationById(@PathVariable Long stationId) {
-//        return stationCrudService.fetchStationDtoById(stationId);
-        return null;
+        return stationCrudService.fetchStationDtoById(stationId);
     }
 
-    // TODO: GET_ALL
     @GetMapping("/get/all")
     public List<StationDto> getAllStationDto() {
-//        return stationCrudService.fetchAllStationDto();
-        return null;
+        return stationCrudService.fetchAllStationDto();
     }
 
-    // TODO: POST
     @PostMapping("/save")
     public StationDto saveStationByDto(StationDto stationDto) {
-//        return stationCrudService.saveStationByDto(stationDto);
-        return null;
+        return stationCrudService.saveStationByDto(stationDto);
     }
 
-    // TODO: PUT
     @PutMapping("/update")
     public StationDto updateStationByDto(StationDto stationDto) {
-//        return stationCrudService.updateStationByDto(stationDto);
-        return null;
+        return stationCrudService.updateStationByDto(stationDto);
     }
 
-    // TODO: DELETE
     @DeleteMapping("/remove/{stationId}")
     public void removeStationById(@PathVariable Long stationId) {
-//        stationCrudService.removeStationById(stationId);
+        stationCrudService.removeStationById(stationId);
     }
 }

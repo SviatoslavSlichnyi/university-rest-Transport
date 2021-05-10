@@ -25,7 +25,7 @@ public class RouteCrudServiceImpl implements RouteCrudService {
     @Override
     public RouteDto saveRoteByDto(RouteDto routeDto) {
         validateSaveAction(routeDto);
-        return saveOrUpdateRouteByDto(routeDto);
+        return saveOfUpdateRouteByDto(routeDto);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class RouteCrudServiceImpl implements RouteCrudService {
     @Override
     public RouteDto updateRouteByDto(RouteDto routeDto) {
        validateUpdateAction(routeDto);
-       return saveOrUpdateRouteByDto(routeDto);
+       return saveOfUpdateRouteByDto(routeDto);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class RouteCrudServiceImpl implements RouteCrudService {
         routeRepository.deleteById(routeId);
     }
 
-    private RouteDto saveOrUpdateRouteByDto(RouteDto routeDto) {
+    private RouteDto saveOfUpdateRouteByDto(RouteDto routeDto) {
         Route route = routeMapper.map(routeDto);
         Route savedRoute = routeRepository.save(route);
         return routeMapper.map(savedRoute);
