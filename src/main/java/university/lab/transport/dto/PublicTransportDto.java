@@ -3,8 +3,6 @@ package university.lab.transport.dto;
 import lombok.*;
 import university.lab.transport.entity.type.TransportType;
 
-import java.util.Set;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -24,5 +22,7 @@ public class PublicTransportDto {
 
     private Long sitsNumber;
 
-    private Set<Long> routeIds;
+    private TransportLocationDto location;
+
+    private Long routeId;
 }

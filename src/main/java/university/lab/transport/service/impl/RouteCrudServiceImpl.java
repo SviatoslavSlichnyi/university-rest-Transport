@@ -7,6 +7,7 @@ import university.lab.transport.dto.RouteDto;
 import university.lab.transport.entity.Route;
 import university.lab.transport.exception.BusinessOperationRuntimeError;
 import university.lab.transport.mapper.RouteMapper;
+import university.lab.transport.repository.PublicTransportRepository;
 import university.lab.transport.repository.RouteRepository;
 import university.lab.transport.service.RouteCrudService;
 
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class RouteCrudServiceImpl implements RouteCrudService {
 
     private final RouteRepository routeRepository;
+    private final PublicTransportRepository transportRepository;
     private final RouteMapper routeMapper;
 
     @Override
@@ -56,6 +58,10 @@ public class RouteCrudServiceImpl implements RouteCrudService {
     private RouteDto saveOfUpdateRouteByDto(RouteDto routeDto) {
         Route route = routeMapper.map(routeDto);
         Route savedRoute = routeRepository.save(route);
+        route.getTransports().forEach(publicTransport -> {
+            publicTransport.setRoute(route);
+            transportRepository.save(publicTransport);
+        });
         return routeMapper.map(savedRoute);
     }
 

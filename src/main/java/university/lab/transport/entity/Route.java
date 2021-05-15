@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -23,7 +24,7 @@ public class Route {
 
     private String name;
 
-    private String RouteNumber;
+    private String routeNumber;
 
     private LocalTime interval;
 
@@ -42,9 +43,8 @@ public class Route {
             joinColumns = @JoinColumn(name = "route_id"),
             inverseJoinColumns = @JoinColumn(name = "station_id")
     )
-    private List<Station> stations = new LinkedList<>();
+    private final List<Station> stations = new LinkedList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "public_transport_id")
-    private PublicTransport transport;
+    @OneToMany(mappedBy = "route")
+    private final List<PublicTransport> transports = new ArrayList<>();
 }

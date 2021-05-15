@@ -14,6 +14,7 @@ import university.lab.transport.repository.PublicTransportRepository;
 import university.lab.transport.repository.StationRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Setter
@@ -29,13 +30,13 @@ public abstract class RouteMapper {
     @Mapping(target = "startStationId", source = "startStation.stationId")
     @Mapping(target = "endStationId", source = "endStation.stationId")
     @Mapping(target = "stationIds", expression = "java(mapStations(route.getStations()))")
-    @Mapping(target = "transportId", source = "transport.publicTransportId")
+    @Mapping(target = "transportIds", expression = "java(mapTransportIds(route.getTransports()))")
     public abstract RouteDto map(Route route);
 
     @Mapping(target = "startStation", expression = "java(fetchStation(routeDto.getStartStationId()))")
     @Mapping(target = "endStation", expression = "java(fetchStation(routeDto.getEndStationId()))")
     @Mapping(target = "stations", expression = "java(mapStationIds(routeDto.getStationIds()))")
-    @Mapping(target = "transport", expression = "java(fetchTransport(routeDto.getTransportId()))")
+    @Mapping(target = "transports", expression = "java(fetchTransports(routeDto.getTransportIds()))")
     public abstract Route map(RouteDto routeDto);
 
     protected List<Long> mapStations(List<Station> stations) {
@@ -55,10 +56,24 @@ public abstract class RouteMapper {
     }
 
     protected Station fetchStation(Long stationId) {
+        if (Objects.isNull(stationId)) return null;
+
         return stationRepository.getOne(stationId);
     }
 
-    protected PublicTransport fetchTransport(Long transportId) {
-        return transportRepository.getOne(transportId);
+    protected List<Long> mapTransportIds(List<PublicTransport> transports) {
+        if (Objects.isNull(transports)) return null;
+
+        return transports.stream()
+                .map(PublicTransport::getPublicTransportId)
+                .collect(Collectors.toList());
+    }
+
+    protected List<PublicTransport> fetchTransports(List<Long> transportIds) {
+        if (Objects.isNull(transportIds)) return null;
+
+        return transportIds.stream()
+                .map(transportRepository::getOne)
+                .collect(Collectors.toList());
     }
 }

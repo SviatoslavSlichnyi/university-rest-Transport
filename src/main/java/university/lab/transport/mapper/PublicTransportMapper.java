@@ -10,7 +10,7 @@ import university.lab.transport.entity.PublicTransport;
 import university.lab.transport.entity.Route;
 import university.lab.transport.service.RouteMapperHelperService;
 
-import java.util.Set;
+import java.util.Objects;
 
 @Setter
 
@@ -20,17 +20,17 @@ public abstract class PublicTransportMapper {
     @Autowired
     private RouteMapperHelperService routeMapperHelperService;
 
-    @Mapping(target = "routeIds", expression = "java(mapRoutes(publicTransport))")
+    @Mapping(target = "location", ignore = true)
+    @Mapping(target = "routeId", source = "route.routeId")
     public abstract PublicTransportDto map(PublicTransport publicTransport);
 
-    @Mapping(target = "routes", expression = "java(mapRouteIdsByDto(publicTransportDto))")
+    @Mapping(target = "route", expression = "java(fetchRouteById(publicTransportDto.getRouteId()))")
     public abstract PublicTransport map(PublicTransportDto publicTransportDto);
 
-    protected Set<Long> mapRoutes(PublicTransport transport) {
-        return routeMapperHelperService.mapRoutes(transport.getRoutes());
+    protected Route fetchRouteById(Long routeId) {
+        if (Objects.isNull(routeId)) return null;
+
+        return routeMapperHelperService.fetchRouteById(routeId);
     }
 
-    protected Set<Route> mapRouteIdsByDto(PublicTransportDto transportDto) {
-        return routeMapperHelperService.mapRouteIds(transportDto.getRouteIds());
-    }
 }
