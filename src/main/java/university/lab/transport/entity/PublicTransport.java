@@ -4,7 +4,6 @@ import lombok.*;
 import university.lab.transport.entity.type.TransportType;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,6 +28,7 @@ public class PublicTransport {
 
     private Long sitsNumber;
 
-    @OneToMany(mappedBy = "transport")
-    private Set<Route> routes;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "route_id")
+    private Route route;
 }

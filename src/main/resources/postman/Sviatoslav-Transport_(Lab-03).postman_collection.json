@@ -6,6 +6,42 @@
 	},
 	"item": [
 		{
+			"name": "Arrival Time",
+			"item": [
+				{
+					"name": "Calculate time",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest-api/arrival-time/calculate?transportId={{publicTransportId}}&stationId={{okhartStationId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"arrival-time",
+								"calculate"
+							],
+							"query": [
+								{
+									"key": "transportId",
+									"value": "{{publicTransportId}}"
+								},
+								{
+									"key": "stationId",
+									"value": "{{okhartStationId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Public-Transport",
 			"item": [
 				{
@@ -397,7 +433,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Night Express\",\r\n    \"routeNumber\": \"184a\",\r\n    \"interval\": \"01:30:00.0\",\r\n    \"schedule\": [\r\n        \"06:00:00.0\",\r\n        \"07:30:00.0\",\r\n        \"09:00:00.0\"\r\n    ],\r\n    \"startStationId\": {{shevchenkaStationId}},\r\n    \"endStationId\": {{okhartStationId}},\r\n    \"stationIds\": [\r\n        {{shevchenkaStationId}},\r\n        {{blackStationId}},\r\n        {{okhartStationId}}\r\n    ],\r\n    \"transportId\": {{publicTransportId}}\r\n}",
+							"raw": "{\r\n    \"name\": \"Night Express\",\r\n    \"routeNumber\": \"184a\",\r\n    \"interval\": \"01:30:00.0\",\r\n    \"schedule\": [\r\n        \"06:00:00.0\",\r\n        \"07:30:00.0\",\r\n        \"09:00:00.0\"\r\n    ],\r\n    \"startStationId\": {{shevchenkaStationId}},\r\n    \"endStationId\": {{okhartStationId}},\r\n    \"stationIds\": [\r\n        {{shevchenkaStationId}},\r\n        {{blackStationId}},\r\n        {{okhartStationId}}\r\n    ],\r\n    \"transportIds\": [\r\n        {{publicTransportId}}\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

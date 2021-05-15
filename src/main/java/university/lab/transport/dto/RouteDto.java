@@ -17,7 +17,7 @@ public class RouteDto {
 
     private String name;
 
-    private String RouteNumber;
+    private String routeNumber;
 
     private LocalTime interval;
 
@@ -29,5 +29,5 @@ public class RouteDto {
 
     private List<Long> stationIds;
 
-    private Long transportId;
+    private List<Long> transportIds;
 }

@@ -7,6 +7,7 @@ import university.lab.transport.entity.Route;
 import university.lab.transport.repository.RouteRepository;
 import university.lab.transport.service.RouteMapperHelperService;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,5 +32,12 @@ public class RouteMapperHelperServiceImpl implements RouteMapperHelperService {
         return routeIds.stream()
                 .map(routeRepository::getOne)
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Route fetchRouteById(Long routeId) {
+        if (Objects.isNull(routeId)) return null;
+
+        return routeRepository.getOne(routeId);
     }
 }

@@ -26,5 +26,5 @@ public class Station {
     private Long streetNumber;
 
     @ManyToMany(mappedBy = "stations")
-    private Set<Route> routes = new HashSet<>();
+    private final Set<Route> routes = new HashSet<>();
 }
